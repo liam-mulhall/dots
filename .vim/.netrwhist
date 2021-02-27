@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/Users/liam/Documents/repos/mine/projects/dots/.git'
+let g:netrw_dirhist_2='/home/liam/Documents/repos/mine/liam-mulhall.github.io-org'
+let g:netrw_dirhist_1='/home/liam/Downloads/i3-master/.config/i3status'

@@ -1,0 +1,130 @@
+#+STARTUP: overview
+#+TITLE: Dotfiles
+
+* Shell
+When I'm on Linux, I use Bash. When I'm on macOS, I use Zsh. This config should
+work for either shell. That being said, you'll have to change each tangle header
+argument to specify the proper file. You could just do a search and replace. See
+[[* Instructions and Troubleshooting][Instructions and Troubleshooting]] for more info. I followed [[https://web.archive.org/web/20190924102437/https://expoundite.net/guides/dotfile-management][this tutorial]] to
+figure this out.
+** Instructions and Troubleshooting
+ 1. As noted above, change the tangle header to specify the proper config file.
+    A search and replace should be easy enough.
+ 2. To generate the config, enter =M-x org-babel-tangle=.
+ 3. Enter =source ~/.zshrc= (or =source ~/.bash_aliases=).
+ 4. This might screw up your =PATH=. To fix it, see [[file:../../exocortex/reference/cheat-sheets/shell.org::* Reset Path][this file]].
+** Note to Self
+I need to add this note to myself at the top of the config so that I remember to
+edit this file instead of the config file.
+#+BEGIN_SRC conf :tangle ~/.zshrc
+#     ___           _ _
+#    /   \___  _ __( ) |_
+#   / /\ / _ \| '_ \/| __|
+#  / /_// (_) | | | || |_
+# /___,' \___/|_| |_| \__|
+#
+#           _ _ _
+#   ___  __| (_) |_
+#  / _ \/ _` | | __|
+# |  __/ (_| | | |_
+#  \___|\__,_|_|\__|
+#
+#      _ _               _   _
+#   __| (_)_ __ ___  ___| |_| |_   _
+#  / _` | | '__/ _ \/ __| __| | | | |
+# | (_| | | | |  __/ (__| |_| | |_| |_
+#  \__,_|_|_|  \___|\___|\__|_|\__, (_)
+#                              |___/
+#    __   _ _ _
+#   /__\_| (_) |_
+#  /_\/ _` | | __|
+# //_| (_| | | |_
+# \__/\__,_|_|\__|
+#
+#  _   _
+# | |_| |__   ___
+# | __| '_ \ / _ \
+# | |_| | | |  __/
+#  \__|_| |_|\___|
+#
+#    ___                                     _
+#   /___\_ __ __ _       _ __ ___   ___   __| | ___
+#  //  // '__/ _` |_____| '_ ` _ \ / _ \ / _` |/ _ \
+# / \_//| | | (_| |_____| | | | | | (_) | (_| |  __/
+# \___/ |_|  \__, |     |_| |_| |_|\___/ \__,_|\___|
+#            |___/
+#   __ _ _
+#  / _(_) | ___
+# | |_| | |/ _ \
+# |  _| | |  __/_
+# |_| |_|_|\___(_)
+#
+#+END_SRC
+** Variables
+Set up some variables so that I don't repeat myself later in the config.
+#+BEGIN_SRC conf :tangle ~/.zshrc
+REPO_DIR="~/Documents/repos"
+SCRIPT_DIR="${REPO_DIR}/mine/projects/scripts"
+#+END_SRC
+** Aliases
+*** Auto-Generated
+I have [[file:../../projects/scripts/repos-print-aliases.sh][a script]] that prints a list of repos that I manually add to my config. I
+won't write them here for privacy reasons. (Some of my repos are private.)
+*** Common Commands
+#+BEGIN_SRC conf :tangle ~/.zshrc
+alias c="clear"
+alias lazy="git commit -am \"Lazy update.\" && git push"
+alias ll="ls -ahl"
+alias q="exit"
+#+END_SRC
+*** Common Navigations
+#+BEGIN_SRC conf :tangle ~/.zshrc
+alias desk="cd ~/Desktop"
+alias mine="cd ${REPO_DIR}/mine"
+alias phet="cd ${REPO_DIR}/phet"
+alias rose="cd ${REPO_DIR}/phet/rosetta"
+alias rscf="cd ~/.phet/ && vim rosetta-config.json"
+alias ..="cd .."
+#+END_SRC
+*** Scripts
++ The =repa= alias auto-updates all Git repos in the directory specified by
+  =REPO_DIR= in a bone-headed fashion. Use cautiously.
++ The =repg= alias prints aliases for each Git repo in the directory specified
+  by =REPO_DIR=. These aliases are numbered. They are supposed to be manually
+  added to your config. The conceit of this was to make command line navigation
+  faster.
++ The =repi= alias prints the status of each Git repo it can find in the
+  directory specified by =REPO_DIR=.
+#+BEGIN_SRC conf :tangle ~/.zshrc
+alias repb="${SCRIPT_DIR}/repos-batch-update.sh $REPO_DIR"
+alias repi="${SCRIPT_DIR}/repos-indicate-status.sh $REPO_DIR"
+alias repp="${SCRIPT_DIR}/repos-print-aliases.sh $REPO_DIR"
+#+END_SRC
+*** SSH
+#+BEGIN_SRC conf :tangle ~/.zshrc
+alias elra="ssh limu0834@elra-02.cs.colorado.edu"
+alias phdv="ssh limu0834@phet-server-dev.int.colorado.edu"
+alias phsv="ssh limu0834@phet-server.int.colorado.edu"
+#+END_SRC
+*** VPN
+#+BEGIN_SRC conf :tangle ~/.zshrc
+alias cvpn='/opt/cisco/anyconnect/bin/vpn connect vpn.colorado.edu'
+alias dvpn='/opt/cisco/anyconnect/bin/vpn disconnect'
+alias svpn='/opt/cisco/anyconnect/bin/vpn status'
+#+END_SRC
+** Path
+*** macOS: Doom Emacs
+The Doom Emacs documentation told me to put these items in my =..zshrc=, so I
+obliged. To see how to reset your =PATH=, see [[file:../../exocortex/reference/cheat-sheets/shell.org::* Reset Path][this file]].
+#+BEGIN_SRC conf :tangle ~/.zshrc
+export PATH="/Applications/MacPorts/Emacs.app/Contents/MacOS:$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"
+#+END_SRC
+*** macOS: MacPorts
+Obviously, this only needs to be in your macOS config. I was farting around with
+my =PATH= and I lost the paths that MacPorts auto-plops into your =PATH= during
+installation, so I had to readd them manually. To see how to reset your =PATH=,
+see [[file:../../exocortex/reference/cheat-sheets/shell.org::* Reset Path][this file]].
+#+BEGIN_SRC conf :tangle ~/.zshrc
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+#+END_SRC
