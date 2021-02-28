@@ -1,6 +1,5 @@
 #+STARTUP: overview
 #+TITLE: Dotfiles
-
 * Shell
 When I'm on Linux, I use Bash. When I'm on macOS, I use Zsh. This config should
 work for either shell. That being said, you'll have to change each tangle header
@@ -63,8 +62,8 @@ edit this file instead of the config file.
 ** Variables
 Set up some variables so that I don't repeat myself later in the config.
 #+BEGIN_SRC conf :tangle ~/.zshrc
-REPO_DIR="~/Documents/repos"
-SCRIPT_DIR="${REPO_DIR}/mine/projects/scripts"
+REPO_DIR="~/base"
+SCRIPT_DIR="${REPO_DIR}/projects/scripts"
 #+END_SRC
 ** Aliases
 *** Auto-Generated
@@ -113,18 +112,21 @@ alias dvpn='/opt/cisco/anyconnect/bin/vpn disconnect'
 alias svpn='/opt/cisco/anyconnect/bin/vpn status'
 #+END_SRC
 ** Path
-*** macOS: Doom Emacs
-The Doom Emacs documentation told me to put these items in my =..zshrc=, so I
-obliged. To see how to reset your =PATH=, see [[file:../../exocortex/reference/cheat-sheets/shell.org::* Reset Path][this file]].
+Modify the path variable so that stuff for MacPorts gets looked for first, then
+Doom Emacs, then default. From what I understand, MacPorts tries to be
+orthogonal from macOS.
++ MacPorts:
+  - ="/opt/local/bin:/opt/local/sbin:"=
++ Doom Emacs on macOS:
+  - ="/Users/liam/.emacs.d/bin:"=
+  - ="/Applications/MacPorts/Emacs.app/Contents/MacOS:"=
++ Default:
+  - = ="/usr/bin:/bin:/usr/sbin:/sbin:"=
 #+BEGIN_SRC conf :tangle ~/.zshrc
-export PATH="/Applications/MacPorts/Emacs.app/Contents/MacOS:$PATH"
-export PATH="$HOME/.emacs.d/bin:$PATH"
+PATH="/opt/local/bin:/opt/local/sbin:/Users/liam/.emacs.d/bin:/Applications/MacPorts/Emacs.app/Contents/MacOS:/usr/bin:/bin:/usr/sbin:/sbin:"
 #+END_SRC
-*** macOS: MacPorts
-Obviously, this only needs to be in your macOS config. I was farting around with
-my =PATH= and I lost the paths that MacPorts auto-plops into your =PATH= during
-installation, so I had to readd them manually. To see how to reset your =PATH=,
-see [[file:../../exocortex/reference/cheat-sheets/shell.org::* Reset Path][this file]].
+** Editor
+Set the default editor. See [[https://askubuntu.com/a/432530][this SO answer]] for more info.
 #+BEGIN_SRC conf :tangle ~/.zshrc
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+EDITOR="/usr/bin/vim"
 #+END_SRC
