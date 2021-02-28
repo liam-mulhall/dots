@@ -29,15 +29,3 @@ set shiftwidth=2
 " Use spellcheck by default.
 set spell
 set spelllang=en_us
-
-" Set color scheme to Dracula.
-packadd! dracula
-colorscheme dracula
-
-" Since we have Lightline installed, don't show "-- INSERT --".
-set noshowmode
-
-" Set Lightline color scheme to Dracula.
-let g:lightline = {
-  \ 'colorscheme': 'dracula',
-  \ }
