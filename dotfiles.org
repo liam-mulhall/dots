@@ -11,7 +11,6 @@ figure this out.
     A search and replace should be easy enough.
  2. To generate the config, enter =M-x org-babel-tangle=.
  3. Enter =source ~/.zshrc= (or =source ~/.bash_aliases=).
- 4. This might screw up your =PATH=. To fix it, see [[file:../../exocortex/reference/cheat-sheets/shell.org::* Reset Path][this file]].
 ** Note to Self
 I need to add this note to myself at the top of the config so that I remember to
 edit this file instead of the config file.
