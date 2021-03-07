@@ -1,5 +1,4 @@
 #+STARTUP: overview
-#+TITLE: Dotfiles
 * Shell
 When I'm on Linux, I use Bash. When I'm on macOS, I use Zsh. This config should
 work for either shell. That being said, you'll have to change each tangle header
