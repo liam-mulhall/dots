@@ -1,3 +1,2 @@
 * Dots
-
-Look on my Dotfiles, ye Mighty, and despair!
+I use [[https://orgmode.org/worg/org-contrib/babel/][Org-babel]] to generate my dotfiles.
