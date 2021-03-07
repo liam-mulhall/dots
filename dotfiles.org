@@ -130,6 +130,12 @@ Set the default editor. See [[https://askubuntu.com/a/432530][this SO answer]] f
 EDITOR="/usr/bin/vim"
 #+END_SRC
 * Vim
+My philosophy for this config is to keep Vim simple. I mostly use Emacs, so when
+I use Vim I want to get in and out quickly without much fuss.
+** Instructions and Troubleshooting
+1. If there's anything you don't understand or don't remember, Vim has excellent
+   help pages. (RTFM, obviously.)
+2. To generate the config, enter =M-x org-babel-tangle=.
 ** Note to Self
 I need to add this note to myself at the top of the config so that I remember to
 edit this file instead of the config file.
@@ -178,6 +184,11 @@ edit this file instead of the config file.
 "
 #+END_SRC
 ** UI Improvements
+*** Color Scheme
+I like the default blue color scheme.
+#+BEGIN_SRC conf :tangle ~/.vimrc
+colorscheme blue
+#+END_SRC
 *** Column at 80 Characters
 This draws a column at 80 characters.
 #+BEGIN_SRC conf :tangle ~/.vimrc
