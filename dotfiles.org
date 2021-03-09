@@ -1,15 +1,14 @@
 #+STARTUP: overview
 * Shell
-When I'm on Linux, I use Bash. When I'm on macOS, I use Zsh. This config should
-work for either shell. That being said, you'll have to change each tangle header
-argument to specify the proper file. You could just do a search and replace. See
-[[* Instructions and Troubleshooting][Instructions and Troubleshooting]] for more info. I followed [[https://web.archive.org/web/20190924102437/https://expoundite.net/guides/dotfile-management][this tutorial]] to
-figure this out.
+This config should work for most shells. That being said, you'll have to change
+each tangle header argument to specify the proper file. You could just do a
+search and replace. See [[* Instructions and Troubleshooting][Instructions and Troubleshooting]] for more info. I
+followed [[https://web.archive.org/web/20190924102437/https://expoundite.net/guides/dotfile-management][this tutorial]] to figure this out.
 ** Instructions and Troubleshooting
  1. As noted above, change the tangle header to specify the proper config file.
     A search and replace should be easy enough.
  2. To generate the config, enter =M-x org-babel-tangle=.
- 3. Enter =source ~/.zshrc= (or =source ~/.bash_aliases=).
+ 3. Enter =source ~/.zshrc= (or =source ~/.bashrc=).
 ** Note to Self
 I need to add this note to myself at the top of the config so that I remember to
 edit this file instead of the config file.
@@ -58,10 +57,9 @@ edit this file instead of the config file.
 #
 #+END_SRC
 ** Variables
-Set up some variables so that I don't repeat myself later in the config.
+Set up base directory variable in case I ever move the base directory.
 #+BEGIN_SRC conf :tangle ~/.zshrc
-#REPO_DIR="~/base"
-#SCRIPT_DIR="${REPO_DIR}/projects/scripts"
+BASE_DIR="~/base"
 #+END_SRC
 ** Aliases
 *** Auto-Generated
@@ -77,25 +75,12 @@ alias q="exit"
 *** Common Navigations
 #+BEGIN_SRC conf :tangle ~/.zshrc
 alias desk="cd ~/Desktop"
-#alias mine="cd ${REPO_DIR}/mine"
-#alias phet="cd ${REPO_DIR}/phet"
-#alias rose="cd ${REPO_DIR}/phet/rosetta"
+alias schl="cd ${BASE_DIR}/1-school"
+alias phet="cd ${BASE_DIR}/2-work/phet/repos"
+alias rose="cd ${BASE_DIR}/2-work/phet/repos/rosetta"
+alias free="cd ${BASE_DIR}/3-free"
 alias rscf="cd ~/.phet/ && vim rosetta-config.json"
 alias ..="cd .."
-#+END_SRC
-*** Scripts
-+ The =repa= alias auto-updates all Git repos in the directory specified by
-  =REPO_DIR= in a bone-headed fashion. Use cautiously.
-+ The =repg= alias prints aliases for each Git repo in the directory specified
-  by =REPO_DIR=. These aliases are numbered. They are supposed to be manually
-  added to your config. The conceit of this was to make command line navigation
-  faster.
-+ The =repi= alias prints the status of each Git repo it can find in the
-  directory specified by =REPO_DIR=.
-#+BEGIN_SRC conf :tangle ~/.zshrc
-#alias repb="${SCRIPT_DIR}/repos-batch-update.sh $REPO_DIR"
-#alias repi="${SCRIPT_DIR}/repos-indicate-status.sh $REPO_DIR"
-#alias repp="${SCRIPT_DIR}/repos-print-aliases.sh $REPO_DIR"
 #+END_SRC
 *** SSH
 #+BEGIN_SRC conf :tangle ~/.zshrc
