@@ -60,12 +60,12 @@ edit this file instead of the config file.
 ** Variables
 Set up some variables so that I don't repeat myself later in the config.
 #+BEGIN_SRC conf :tangle ~/.zshrc
-REPO_DIR="~/base"
-SCRIPT_DIR="${REPO_DIR}/projects/scripts"
+#REPO_DIR="~/base"
+#SCRIPT_DIR="${REPO_DIR}/projects/scripts"
 #+END_SRC
 ** Aliases
 *** Auto-Generated
-I have [[file:../../projects/scripts/repos-print-aliases.sh][a script]] that prints a list of repos that I manually add to my config. I
+I have a script that prints a list of repos that I manually add to my config. I
 won't write them here for privacy reasons. (Some of my repos are private.)
 *** Common Commands
 #+BEGIN_SRC conf :tangle ~/.zshrc
@@ -77,9 +77,9 @@ alias q="exit"
 *** Common Navigations
 #+BEGIN_SRC conf :tangle ~/.zshrc
 alias desk="cd ~/Desktop"
-alias mine="cd ${REPO_DIR}/mine"
-alias phet="cd ${REPO_DIR}/phet"
-alias rose="cd ${REPO_DIR}/phet/rosetta"
+#alias mine="cd ${REPO_DIR}/mine"
+#alias phet="cd ${REPO_DIR}/phet"
+#alias rose="cd ${REPO_DIR}/phet/rosetta"
 alias rscf="cd ~/.phet/ && vim rosetta-config.json"
 alias ..="cd .."
 #+END_SRC
@@ -93,9 +93,9 @@ alias ..="cd .."
 + The =repi= alias prints the status of each Git repo it can find in the
   directory specified by =REPO_DIR=.
 #+BEGIN_SRC conf :tangle ~/.zshrc
-alias repb="${SCRIPT_DIR}/repos-batch-update.sh $REPO_DIR"
-alias repi="${SCRIPT_DIR}/repos-indicate-status.sh $REPO_DIR"
-alias repp="${SCRIPT_DIR}/repos-print-aliases.sh $REPO_DIR"
+#alias repb="${SCRIPT_DIR}/repos-batch-update.sh $REPO_DIR"
+#alias repi="${SCRIPT_DIR}/repos-indicate-status.sh $REPO_DIR"
+#alias repp="${SCRIPT_DIR}/repos-print-aliases.sh $REPO_DIR"
 #+END_SRC
 *** SSH
 #+BEGIN_SRC conf :tangle ~/.zshrc
@@ -111,17 +111,19 @@ alias svpn='/opt/cisco/anyconnect/bin/vpn status'
 #+END_SRC
 ** Path
 Modify the path variable so that stuff for MacPorts gets looked for first, then
-Doom Emacs, then default. From what I understand, MacPorts tries to be
-orthogonal from macOS.
+Doom Emacs, then default, and finally my scripts. From what I understand,
+MacPorts tries to be orthogonal from macOS.
 + MacPorts:
-  - ="/opt/local/bin:/opt/local/sbin:"=
+  - =/opt/local/bin:/opt/local/sbin:=
 + Doom Emacs on macOS:
-  - ="/Users/liam/.emacs.d/bin:"=
-  - ="/Applications/MacPorts/Emacs.app/Contents/MacOS:"=
+  - =/Users/liam/.emacs.d/bin:=
+  - =/Applications/MacPorts/Emacs.app/Contents/MacOS:=
 + Default:
-  - = ="/usr/bin:/bin:/usr/sbin:/sbin:"=
+  - =/usr/bin:/bin:/usr/sbin:/sbin:=
++ My Scripts:
+  - =/Users/liam/bin:=
 #+BEGIN_SRC conf :tangle ~/.zshrc
-PATH="/opt/local/bin:/opt/local/sbin:/Users/liam/.emacs.d/bin:/Applications/MacPorts/Emacs.app/Contents/MacOS:/usr/bin:/bin:/usr/sbin:/sbin:"
+PATH="/opt/local/bin:/opt/local/sbin:/Users/liam/.emacs.d/bin:/Applications/MacPorts/Emacs.app/Contents/MacOS:/usr/bin:/bin:/usr/sbin:/sbin:/Users/liam/bin:"
 #+END_SRC
 ** Editor
 Set the default editor. See [[https://askubuntu.com/a/432530][this SO answer]] for more info.
