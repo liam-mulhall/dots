@@ -81,10 +81,10 @@ Use a dark default color scheme.
 (load-theme 'tango-dark)
 #+END_SRC
 * Shell
-This config should work for most shells. That being said, you'll have to change
-each tangle header argument to specify the proper file. You could just do a
-search and replace. See [[* Instructions and Troubleshooting][Instructions and Troubleshooting]] for more info. I
-followed [[https://web.archive.org/web/20190924102437/https://expoundite.net/guides/dotfile-management][this tutorial]] to figure this out.
+This config should work for most POSIX-compliant shells. That being said, you'll
+have to change each tangle header argument to specify the proper file. You could
+just do a search and replace. See [[* Instructions and Troubleshooting][Instructions and Troubleshooting]] for more
+info. I followed [[https://web.archive.org/web/20190924102437/https://expoundite.net/guides/dotfile-management][this tutorial]] to figure this out.
 ** Instructions and Troubleshooting
  1. As noted above, change the tangle header to specify the proper config file.
     A search and replace should be easy enough.
@@ -143,9 +143,6 @@ Set up base directory variable in case I ever move the base directory.
 BASE_DIR="~/base"
 #+END_SRC
 ** Aliases
-*** Auto-Generated
-I have a script that prints a list of repos that I manually add to my config. I
-won't write them here for privacy reasons. (Some of my repos are private.)
 *** Common Commands
 #+BEGIN_SRC conf :tangle ~/.zshrc
 alias c="clear"
@@ -156,10 +153,10 @@ alias q="exit"
 *** Common Navigations
 #+BEGIN_SRC conf :tangle ~/.zshrc
 alias desk="cd ~/Desktop"
-alias schl="cd ${BASE_DIR}/1-school"
-alias phet="cd ${BASE_DIR}/2-work/phet/repos"
-alias rose="cd ${BASE_DIR}/2-work/phet/repos/rosetta"
-alias free="cd ${BASE_DIR}/3-free"
+alias schl="cd ${BASE_DIR}/school"
+alias phet="cd ${BASE_DIR}/work/phet/repos"
+alias rose="cd ${BASE_DIR}/work/phet/repos/rosetta"
+alias free="cd ${BASE_DIR}/free"
 alias rscf="cd ~/.phet/ && vim rosetta-config.json"
 alias ..="cd .."
 #+END_SRC
