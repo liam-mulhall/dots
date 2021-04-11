@@ -1,8 +1,8 @@
 #+startup: overview
 * Emacs
 ** Instructions and Troubleshooting
-1. Emacs has pretty good docs. There's also the Worg.
-2. Use =M-x org-babel-tangle= to generate the config.
++ Emacs has pretty good docs. There's also the Worg.
++ Use =M-x org-babel-tangle= to generate the config.
 ** Note to Self
 I need to add this note to myself at the top of the config so that I
 remember to edit this file instead of the config file.
@@ -104,7 +104,7 @@ Tooltips are distracting.
 (tooltip-mode -1)
 #+end_src
 *** No Tool Bar
-None of those silly icons at the top of the frame.
+None of those icons at the top of the frame.
 #+begin_src emacs-lisp :tangle ~/.emacs.d/init.el
 (tool-bar-mode -1)
 #+end_src
@@ -132,7 +132,8 @@ Enable line numbers for modes where you would want line numbers.
 Nice colorful delimiters for programming.
 #+begin_src emacs-lisp :tangle ~/.emacs.d/init.el
 (use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
+  :hook
+  (prog-mode . rainbow-delimiters-mode))
 #+end_src
 *** Font
 This should set the default font for all graphical frames.
@@ -150,7 +151,8 @@ Provides some fancy icons.
 Fancy modeline stolen from Doom Emacs. It requires All the Icons.
 #+begin_src emacs-lisp :tangle ~/.emacs.d/init.el
 (use-package doom-modeline
-  :init (doom-modeline-mode 1))
+  :init
+  (doom-modeline-mode 1))
 #+end_src
 *** Doom Themes
 Fancy themes stolen from Doom Emacs. Mostly stole the code snippet from the
@@ -162,8 +164,8 @@ GitHub repo.
         doom-themes-enable-italic t)
   (load-theme 'doom-solarized-light t)
   (doom-themes-visual-bell-config)
-  ;(setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
-  ;(doom-themes-treemacs-config)
+  (setq doom-themes-treemacs-theme "doom-colors") ; Use the colorful Treemacs theme.
+  (doom-themes-treemacs-config)
 
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
@@ -172,14 +174,17 @@ GitHub repo.
 Add keybindings to Counsel and them by default.
 #+begin_src emacs-lisp :tangle ~/.emacs.d/init.el
 (use-package counsel
-  :demand t
-  :bind (("M-x" . counsel-M-x)
-         ("C-x b" . counsel-ibuffer)
-         ("C-x C-f" . counsel-find-file)
-         ("C-M-j" . counsel-switch-buffer)
-         ("C-M-l" . counsel-imenu)
-         :map minibuffer-local-map
-         ("C-r" . 'counsel-minibuffer-history)))
+  :demand
+  t
+  :bind
+  (("M-x" . counsel-M-x)
+  ("C-x b" . counsel-ibuffer)
+  ("C-x C-f" . counsel-find-file)
+  ("C-M-j" . counsel-switch-buffer)
+  ("C-M-l" . counsel-imenu)
+  :map
+  minibuffer-local-map
+  ("C-r" . 'counsel-minibuffer-history)))
 #+end_src
 *** Swiper
 I tried setting up Ivy first, but that didn't seem to work, so I'm
@@ -189,24 +194,28 @@ installing Swiper first.
 #+end_src
 *** Ivy
 Ivy provides a completion mechanism. Ivy also contains Counsel and
-Swiper.  Counsel is a set of improved Emacs commands. Swiper is an
+Swiper. Counsel is a set of improved Emacs commands. Swiper is an
 alternative to Isearch.
 #+begin_src emacs-lisp :tangle ~/.emacs.d/init.el
 (use-package ivy
   :diminish
-  :bind (("C-s" . swiper)
-         :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)
-         ("C-l" . ivy-alt-done)
-         ("C-j" . ivy-next-line)
-         ("C-k" . ivy-previous-line)
-         :map ivy-switch-buffer-map
-         ("C-k" . ivy-previous-line)
-         ("C-l" . ivy-done)
-         ("C-d" . ivy-switch-buffer-kill)
-         :map ivy-reverse-i-search-map
-         ("C-k" . ivy-previous-line)
-         ("C-d" . ivy-reverse-i-search-kill))
+  :bind
+  (("C-s" . swiper)
+  :map
+  ivy-minibuffer-map
+  ("TAB" . ivy-alt-done)
+  ("C-l" . ivy-alt-done)
+  ("C-j" . ivy-next-line)
+  ("C-k" . ivy-previous-line)
+  :map
+  ivy-switch-buffer-map
+  ("C-k" . ivy-previous-line)
+  ("C-l" . ivy-done)
+  ("C-d" . ivy-switch-buffer-kill)
+  :map
+  ivy-reverse-i-search-map
+  ("C-k" . ivy-previous-line)
+  ("C-d" . ivy-reverse-i-search-kill))
   :config
   (ivy-mode 1))
 #+end_src
@@ -215,9 +224,12 @@ This package gives an overview of what keybindings are available based
 on the prefix keys you entered.
 #+begin_src emacs-lisp :tangle ~/.emacs.d/init.el
 (use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config (setq which-key-idle-delay 0.2))
+  :init
+  (which-key-mode)
+  :diminish
+  which-key-mode
+  :config
+  (setq which-key-idle-delay 0.2))
 #+end_src
 *** Ivy Rich
 This gives a description of each function listed by Ivy.
@@ -260,7 +272,8 @@ does not cover properly by default, such as =help-mode=, =M-x calendar=,
 Eshell and more.
 #+begin_src emacs-lisp :tangle ~/.emacs.d/init.el
 (use-package evil-collection
-  :after evil
+  :after
+  evil
   :config
   (evil-collection-init))
 #+end_src
@@ -268,22 +281,27 @@ Eshell and more.
 Projectile is a project manager for Emacs.
 #+begin_src emacs-lisp :tangle ~/.emacs.d/init.el
 (use-package projectile
-  :diminish projectile-mode
-  :config (projectile-mode)
-  :custom ((projectile-completion-system 'ivy))
-  :demand t
+  :diminish
+  projectile-mode
+  :config
+  (projectile-mode)
+  :custom
+  ((projectile-completion-system 'ivy))
+  :demand
+  t
   :bind-keymap
   ("C-c p" . projectile-command-map)
   :init
   (when (file-directory-p "~/base")
-    (setq projectile-project-search-path '("~/base")))
+  (setq projectile-project-search-path '("~/base")))
   (setq projectile-switch-project-action #'projectile-dired))
 #+end_src
 *** Counsel Projectile
 Better Ivy-Projectile integration.
 #+begin_src emacs-lisp :tangle ~/.emacs.d/init.el
 (use-package counsel-projectile
-  :config (counsel-projectile-mode))
+  :config
+  (counsel-projectile-mode))
 #+end_src
 *** Magit
 A Git "porcelain" inside Emacs.
@@ -316,7 +334,8 @@ My custom Org-mode setup.
 More customization. Hook for my custom Org-mode set up.
 #+begin_src emacs-lisp :tangle ~/.emacs.d/init.el
 (use-package org
-  :hook (org-mode . lem/org-mode-setup)
+  :hook
+  (org-mode . lem/org-mode-setup)
   :config
   (setq org-ellipsis " ▾"
         org-hide-emphasis-markers t))
@@ -325,8 +344,10 @@ More customization. Hook for my custom Org-mode set up.
 Org Superstar makes =*='s prettier.
 #+begin_src emacs-lisp :tangle ~/.emacs.d/init.el
 (use-package org-superstar
-  :after org
-  :hook (org-mode . org-superstar-mode))
+  :after
+  org
+  :hook
+  (org-mode . org-superstar-mode))
 #+end_src
 **** Configure Org Agenda
 List of Org Agenda files.
@@ -334,32 +355,85 @@ List of Org Agenda files.
 (setq org-agenda-files
       '("~/base/gtd/todo.org" "~/base/gtd/calendar.org"))
 #+end_src
-
-*** mu4e
+*** TODO mu4e
 **** mbsync Configuration
 The mbsync program is part of isync.
 #+begin_src conf :tangle ~/.mbsyncrc
 IMAPAccount gmail
 Host imap.gmail.com
 User mulhall.edward.liam@gmail.com
-PassCmd "cat ~/.oh-no-insecure-password"
+PassCmd "pass email/google.com"
 SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
 
 IMAPStore gmail-remote
 Account gmail
 
 MaildirStore gmail-local
 Subfolders Verbatim
-Path ~/Mail/
-Inbox ~/Mail/Inbox
+Path ~/base/mail
+Inbox ~/base/mail/inbox
 
 Channel gmail
-Master :gmail-remote:
-Slave :gmail-local:
-Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" "[Gmail]/Trash"
+Far :gmail-remote:
+Near :gmail-local:
+Patterns * ![Gmail]* "[Gmail]/Sent Mail/" "[Gmail]/Starred/" "[Gmail]/All Mail/" "[Gmail]/Trash/"
 Create Both
 SyncState *
+#+end_src
+**** mu4e Configuration
+I can't get this to work on macOS. See https://github.com/djcb/mu/issues/1388.
+#+begin_src emacs-lisp :tangle ~/.emacs.d/init.el
+(use-package mu4e
+  :ensure
+  nil 
+  :defer
+  20 ; Wait 20 seconds after startup.
+  
+  :config
+
+  ;; Tell Emacs where mu4e is.
+  ;; (add-to-list 'load-path "/opt/local/bin/mu")
+  (setq mu4e-mu-binary "/opt/local/bin/mu")
+  
+  ;; This is set to true to avoid mail syncing issues when using mbsync.
+  (setq mu4e-change-filenames-when-moving t)
+
+  ;; Refresh mail using isync every 10 minutes.
+  (setq mu4e-update-interval (* 10 60))
+  (setq mu4e-get-mail-command "mbsync -a")
+  (setq mu4e-maildir "~/base/mail")
+
+  ;; Set folders.
+  (setq mu4e-drafts-folder "/[Gmail]/Drafts")
+  (setq mu4e-sent-folder   "/[Gmail]/Sent Mail")
+  (setq mu4e-refile-folder "/[Gmail]/All Mail")
+  (setq mu4e-trash-folder  "/[Gmail]/Trash")
+
+  ;; Set shortcuts.
+  (setq mu4e-maildir-shortcuts
+      '(("/Inbox"             . ?i)
+        ("/[Gmail]/Sent Mail" . ?s)
+        ("/[Gmail]/Trash"     . ?t)
+        ("/[Gmail]/Drafts"    . ?d)
+        ("/[Gmail]/All Mail"  . ?a))))
+#+end_src
+* Git
+** Config
+Set global options for Git.
+#+begin_src conf :tangle ~/.config/git/config
+[user]
+name = Liam Edward Mulhall
+email = mulhall.edward.liam@gmail.com
+[github]
+        user = liam-mulhall
+#+end_src
+** Ignore
+#+begin_src :tangle ~/.config/git/ignore
+# Ignore macOS .DS_Store files.
+.DS_Store
+
+# Ignore Vim .swp files.
+*.swp
 #+end_src
 * Shell
 This config should work for most POSIX-compliant shells. That being
@@ -368,10 +442,10 @@ proper file. You could just do a search and replace. See [[* Instructions and Tr
 and Troubleshooting]] for more info. I followed [[https://web.archive.org/web/20190924102437/https://expoundite.net/guides/dotfile-management][this tutorial]] to figure
 this out.
 ** Instructions and Troubleshooting
- 1. As noted above, change the tangle header to specify the proper
+ + As noted above, change the tangle header to specify the proper
     config file.  A search and replace should be easy enough.
- 2. To generate the config, enter =M-x org-babel-tangle=.
- 3. Enter =source ~/.zshrc= (or =source ~/.bashrc=).
+ + To generate the config, enter =M-x org-babel-tangle=.
+ + Enter =source ~/.zshrc= (or =source ~/.bashrc=).
 ** Note to Self
 I need to add this note to myself at the top of the config so that I
 remember to edit this file instead of the config file.
@@ -422,7 +496,7 @@ remember to edit this file instead of the config file.
 ** Variables
 Set up base directory variable in case I ever move the base directory.
 #+begin_src conf :tangle ~/.zshrc
-BASE_DIR="~/base"
+BASE="~/base"
 #+end_src
 ** Aliases
 *** Common Commands
@@ -435,10 +509,10 @@ alias q="exit"
 *** Common Navigations
 #+begin_src conf :tangle ~/.zshrc
 alias desk="cd ~/Desktop"
-alias schl="cd ${BASE_DIR}/school"
-alias phet="cd ${BASE_DIR}/work/phet/repos"
-alias rose="cd ${BASE_DIR}/work/phet/repos/rosetta"
-alias free="cd ${BASE_DIR}/free"
+alias schl="cd ${BASE}/school"
+alias phet="cd ${BASE}/work/phet/repos"
+alias rose="cd ${BASE}/work/phet/repos/rosetta"
+alias free="cd ${BASE}/free"
 alias rscf="cd ~/.phet/ && vim rosetta-config.json"
 alias ..="cd .."
 #+end_src
@@ -480,13 +554,13 @@ My philosophy for this config is to keep Vim simple. I mostly use
 Emacs, so when I use Vim I want to get in and out quickly without much
 fuss.
 ** Instructions and Troubleshooting
-1. If there's anything you don't understand or don't remember, Vim has
-   excellent help pages. (RTFM, obviously.)
-2. To generate the config, enter =M-x org-babel-tangle=.
++ If there's anything you don't understand or don't remember, Vim has
+   excellent help pages.
++ To generate the config, enter =M-x org-babel-tangle=.
 ** Note to Self
 I need to add this note to myself at the top of the config so that I
 remember to edit this file instead of the config file.
-#+begin_src conf :tangle ~/.vimrc
+#+begin_src conf :tangle ~/.vim/vimrc
 "     ___           _ _
 "    /   \___  _ __( ) |_
 "   / /\ / _ \| '_ \/| __|
@@ -533,57 +607,57 @@ remember to edit this file instead of the config file.
 ** User Interface Improvements
 *** Color Scheme
 I like the default desert color scheme.
-#+begin_src conf :tangle ~/.vimrc
+#+begin_src conf :tangle ~/.vim/vimrc
 colorscheme desert
 #+end_src
 *** Column at 80 Characters
 This draws a column at 80 characters.
-#+begin_src conf :tangle ~/.vimrc
+#+begin_src conf :tangle ~/.vim/vimrc
 set colorcolumn=80
 #+end_src
 *** Cursor Line
 Draws a big line that shows where your cursor is.
-#+begin_src conf :tangle ~/.vimrc
+#+begin_src conf :tangle ~/.vim/vimrc
 set cursorline
 #+end_src
 *** Line Numbers
 This shows the actual line number and numbers relative to that line
 number.  Showing relative line numbers is useful for commands and
 navigating.
-#+begin_src conf :tangle ~/.vimrc
+#+begin_src conf :tangle ~/.vim/vimrc
 set number relativenumber
 #+end_src
 *** Show Column Number in Status Line
 This shows the line number and the column number in the status line.
-#+begin_src conf :tangle ~/.vimrc
+#+begin_src conf :tangle ~/.vim/vimrc
 set ruler
 #+end_src
 *** Status Line
 This sets a persistent status line at the bottom of the screen.
-#+begin_src conf :tangle ~/.vimrc
+#+begin_src conf :tangle ~/.vim/vimrc
 set laststatus=2
 #+end_src
 ** Tools
 *** Check Spelling
 This turns spell check on by default. I think this is a good idea
 because I often forget to check my spelling.
-#+begin_src conf :tangle ~/.vimrc
+#+begin_src conf :tangle ~/.vim/vimrc
 set spell
 set spelllang=en_us
 #+end_src
 *** Command Completion Menu
 This turns on a nifty menu that allows you to complete commands with
 the =tab= key.
-#+begin_src conf :tangle ~/.vimrc
+#+begin_src conf :tangle ~/.vim/vimrc
 set wildmenu
 #+end_src
 *** Highlight Search Items
 Applies a highlight to items that match your search query.
-#+begin_src conf :tangle ~/.vimrc
+#+begin_src conf :tangle ~/.vim/vimrc
 set hlsearch
 #+end_src
 *** Syntax Highlighting
 We always want syntax highlighting.
-#+begin_src conf :tangle ~/.vimrc
+#+begin_src conf :tangle ~/.vim/vimrc
 syntax enable
 #+end_src
